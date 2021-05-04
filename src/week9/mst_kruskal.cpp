@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <vector>
 #include <exception>
+#include <stdexcept>
 #include <memory>
 #include <string>
 #include <algorithm>
@@ -95,10 +96,10 @@ public:
             // https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance?view=msvc-160
             // P0645R10 <format> Text Formatting 	No
 //            throw std::exception(std::format("index '{}' is invalid"));
-            throw std::exception("provided source vertex index is invalid");
+            throw std::runtime_error("provided source vertex index is invalid");
 
         if (edge.source < 0 || edge.source > m_edges.size())
-            throw std::exception("provided destination vertex index is invalid");
+            throw std::runtime_error("provided destination vertex index is invalid");
 
         m_edges.push_back(edge);
     }
