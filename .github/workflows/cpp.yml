@@ -1,0 +1,15 @@
+name: cpp
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      submodules: recursive
+    - run: |
+        mkdir build
+        cd build
+        cmake ..
+        make

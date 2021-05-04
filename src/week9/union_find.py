@@ -58,7 +58,7 @@
 
 # 그리고 union-find의 union() find()에 대해서..
 # 1. find()의 최대 시간은 트리의 최대 높이만큼 차지한다.
-# 2. 트리의 높이를 높이는 연산은 union() 뿐이다.
+# 2. 트리의 높이 1을 높이는 연산은 union() 뿐이다.
 # 3. union()을 수행할 때 높이가 낮은 트리를 높은 트리의 루트에 매달아둔다.
 #    그러면 트리 높이가 h에서 h + 1이 되려면 노드가 최소 2h개는 필요하다.
 #
@@ -73,18 +73,30 @@
 # 1  3 ==> 1  2    | ( 높이가 증가했다 )
 #             |    |
 #             3 ---+
-#
-# 4. h=2에서 h=3으로 가기 위해서 최소 4개의 노드가 필요했다.
-# 5.
+
 class UnionFind:
     def __init__(self, size):
         self.parent = [i for i in range(size)]
+        self.weight = [1] * size
 
     # $X \cap Y$ 연산
     def union(self, x_id, y_id):
         print(f"union({x_id}, {y_id})")
+
         x_root = self.find(x_id)
-        self.parent[y_id] = x_root
+        y_root = self.find(y_id)
+
+        x_weight = self.weight[x_root]
+        y_weight = self.weight[y_root]
+
+        if x_weight < y_weight:
+            # y를 루트로 유지하고 x를 자식으로
+            self.parent[x_root] = y_root
+            self.weight[y_root] += self.weight[x_root]
+        else:
+            # x를 루트로 유지하고 y를 자식으로
+            self.parent[y_root] = x_root
+            self.weight[x_root] += self.weight[y_root]
 
     # 원소 x가 속한 집합의 id를 반환하는 연산
     def find(self, x_id):
