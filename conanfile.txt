@@ -1,0 +1,7 @@
+[requires]
+Catch2/2.6.0@catchorg/stable
+spdlog/1.8.5
+nlohmann_json/3.9.1
+
+[generators]
+cmake
