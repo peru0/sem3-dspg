@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CMAKE_BUILD_TYPE: Release
     steps:
     - uses: actions/checkout@v2
       with:
