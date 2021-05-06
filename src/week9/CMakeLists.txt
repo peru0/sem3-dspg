@@ -7,6 +7,5 @@ target_link_libraries(dspg-dijkstra ${CONAN_LIBS})
 
 
 file(COPY
-        scripts/stations.json
+        metro.json
         DESTINATION ${CMAKE_BINARY_DIR}/bin)
-

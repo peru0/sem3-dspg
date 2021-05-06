@@ -1,7 +1,6 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
-#include "fmt/format.h"
 #include "spdlog/spdlog.h"
 #include "nlohmann/json.hpp"
 #include "dijkstra.h"
