@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "system_error": "cpp",
-        "xlocale": "cpp",
-        "memory": "cpp",
-        "unordered_map": "cpp"
-    }
-}
