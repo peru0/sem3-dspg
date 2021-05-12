@@ -4,14 +4,6 @@ def partition(arr, first, last):
     # [3, 1, 5, 2, 4]
     #  ^  ^left    ^right, last
     #  pivot, first
-    #
-    # 주의할 사항
-    # - 왼쪽에서 오른쪽으로 스캔할 때
-    #   1. last 경계를 넘으면 안 된다. 이건 너무나도 자명하다.
-    #      (right가 항상 last보다 작거나 같으니 이걸 이용하면 되겠지..)
-    #   2. left가 right를 넘어버린 상태로 (left > right) swap을 수행하면
-    #      더 이상 왼쪽 구간이 작고, 오른쪽 구간이 큰 성질을 이용할 수 없다.
-    # - 오른쪽에서 왼쪽으로 스캔할 때도 마찬가지
 
     pivot = arr[first]
     left = first + 1

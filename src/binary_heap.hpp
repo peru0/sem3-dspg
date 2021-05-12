@@ -1,17 +1,22 @@
 #pragma once
 
+#include <tuple>
 #include <vector>
 #include <algorithm>
 #include <exception>
 #include <stdexcept>
 
-template<class T>
+template<typename Priority, typename Value>
 class BinaryHeap {
 private:
-    std::vector<T> m_data;
+    std::vector<std::pair<Priority, Value>> m_data;
 
     bool is_index_in_bound(size_t index) {
         return index < m_data.size();
+    }
+
+    Priority& get_priority(size_t index) {
+        return m_data[index].first;
     }
 
     void down_heapify(size_t index) {
@@ -50,16 +55,18 @@ private:
 public:
     explicit BinaryHeap() : m_data() {}
 
-    // void insert(T&& value);
-    void insert(const T& value) {
+    size_t size() const { return m_data.size(); }
+
+    bool empty() const { return m_data.size() == 0; }
+
+    void insert(const Priority& priority, const Value& value) {
         size_t index = m_data.size();
-        m_data.push_back(value);
+        m_data.push_back(std::make_pair(priority, value));
 
         while (index != 0) {
             size_t parent_index = index / 2;
 
-            // 부모보다 크면 더 이상 올라가지 않고 종료 (min-heap)
-            if (m_data[index] > m_data[parent_index])
+            if (get_priority(index) > get_priority(parent_index))
                 break;
 
             std::swap(m_data[index], m_data[parent_index]);
@@ -67,22 +74,21 @@ public:
         }
     }
 
-    T pop() {
+    Value pop() {
         if (m_data.empty())
             throw std::runtime_error("attempted to pop an element from the empty heap");
 
         size_t last_index = m_data.size() - 1;
 
-        // extract the top element from the heap
-        T value = m_data[0];
+        auto value = m_data[0];
         std::swap(m_data[0], m_data[last_index]);
         m_data.pop_back();
 
         down_heapify(0);
 
-        return value;
+        return value.second;
     }
 
-    const T& peek() const { return m_data[0]; }
+    Value& peek() { return m_data[0]; }
 };
 

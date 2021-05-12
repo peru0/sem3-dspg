@@ -5,7 +5,7 @@ add_executable(kruskal mst_kruskal.cpp)
 add_executable(binary_heap_test binary_heap_test.cpp)
 target_link_libraries(binary_heap_test PRIVATE ${CONAN_LIBS})
 
-add_executable(dijkstra dijkstra.cpp)
+add_executable(dijkstra dijkstra_metro.cpp)
 target_link_libraries(dijkstra PRIVATE ${CONAN_LIBS})
 
 file(COPY

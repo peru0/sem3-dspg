@@ -12,6 +12,7 @@ class Edge(object):
         self.destination = destination
         self.distance = distance
 
+
 class Station(object):
     def __init__(self, station_id, name):
         self.id = station_id
@@ -122,9 +123,11 @@ class Metro(object):
 
         return reversed(path), distances[dst.id]
 
+
 def main():
     metro = Metro("../data/metro.json")
-    path, distance = metro.find_path("서울역", "청량리(서울시립대입구)")
+    # path, distance = metro.find_path("서울역", "청량리(서울시립대입구)")
+    path, distance = metro.find_path("서울역", "고속터미널")
 
     for node, distance in path:
         print(f"↓ {node.name} (누적 {distance:.2f}km) ↓")
