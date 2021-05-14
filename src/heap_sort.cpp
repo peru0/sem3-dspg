@@ -12,15 +12,20 @@ int main() {
         auto p = i % 1000;
         heap.insert(p, p);
     }
-
+//    Release
+//    [2021-05-14 16:56:12.584] [info] inserting 5m elements to the heap...
+//    [2021-05-14 16:56:12.689] [info] <...>
+//    [2021-05-14 16:56:14.324] [info] ✅ passed!
     spdlog::info("<...>");
     auto m = std::numeric_limits<int>::min();
     while (!heap.empty()) {
         auto val = heap.pop();
         if (val < m) {
-            spdlog::error("something is wrong: m={}, val={}", m, val);
+            spdlog::error("❌ something is wrong: m={}, val={}", m, val);
+            return -1;
         }
     }
-    spdlog::info("done!");
 
+    spdlog::info("✅ passed!");
+    return 0;
 }
